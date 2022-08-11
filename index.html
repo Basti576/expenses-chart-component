@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Frontend Mentor | Expenses chart component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="balance-wrapper">
+      <div class="balance-column-left">
+        <p id="balance-info">My balance</p>
+        <h1 id="balance-value">$921.48</h1>
+      </div>
+      <div class="balance-column-right">
+        <img src="./images/logo.svg" alt="logo"/>
+      </div>
+    </div>
+
+
+
+    <div class="diagram-wrapper">
+      <div class="diagram-heading">
+        <h1>Spending - Last 7 days</h1>
+      </div>
+      <div class="diagram">
+        <canvas id="chart"></canvas>
+      </div>
+      <div class="diagram-footer">
+        <div class="diagram-footer-column-left">
+          <p id="diagram-info">Total this month</p>
+          <h1 id="diagram-value">$478.33</h1>
+        </div>
+        <div class="diagram-footer-column-right">
+          <p id="diagram-value-difference">+2.4%</p>
+          <p id="diagram-difference-info">from last month</p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>  
+
+  <footer>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Sebastian</a>.
+  </div>
+</footer>
+
+
+<script>
+
+let labels=[];
+let dataAmount = [];
+
+async function fetchData(){
+  const url = './data.json';
+  const response = await fetch(url);
+
+  //wait until response 
+  const datapoints = await response.json();
+  //console.log(datapoints);
+  
+  
+  return datapoints;
+};
+
+fetchData().then(datapoints =>{
+
+    datapoints.forEach((element)=>{
+      console.log(element);
+      labels.push(element.day)
+      dataAmount.push(element.amount)
+    })
+
+}).then(buildChart);
+
+
+
+function buildChart(){
+  console.log(dataAmount);
+  const data={
+    labels: labels,
+    datasets:[{
+      label:'Amount',
+      backgroundColor:'hsl(10, 79%, 65%)',
+      borderColor: 'hsl(10, 79%, 65%)',
+      hoverBackgroundColor:'hsl(186, 34%, 60%)',
+      borderRadius: 4,
+      data:dataAmount
+    }]
+  };
+
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      plugins: {
+        legend: {
+          display:false
+        }
+      },
+        
+      scales:{
+        x:{
+          grid:{
+            display:false
+          }
+        },
+        y:{
+          display:false,
+          grid:{
+            display:false
+          }
+        }
+      }
+    }
+  };
+
+
+  const myChart = new Chart(
+    document.getElementById('chart'),
+    config
+  );
+}
+
+
+</script>
+</body>
+</html>

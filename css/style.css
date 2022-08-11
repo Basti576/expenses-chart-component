@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.attribution { 
+    font-size: 11px; text-align: center; 
+}
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
+
+body{
+    background: hsl(27, 66%, 92%);
+    max-width:100vw;
+    min-height:100vh;
+    display:flex;
+    font-family:'DM Sans';
+}
+.wrapper{
+        
+    margin:auto;
+    width: auto;
+
+}
+
+.diagram{
+    border-bottom: 2px solid rgb(240, 239, 239);
+}
+
+.balance-wrapper{
+background:hsl(10, 79%, 65%);
+color:hsl(33, 100%, 98%);
+border-radius:2rem;
+padding:2rem;
+margin-bottom:2rem;
+display:flex;
+
+flex-direction:row;
+justify-content: space-between;
+
+}
+
+.diagram-wrapper{
+    background: rgb(255, 255, 255);
+    padding:2rem;
+    margin-top:2rem;
+    border-radius:2rem;
+}
+
+.diagram-wrapper .diagram-footer{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    margin-top:1rem;
+    align-items:center;
+    
+}
+
+
+.diagram-footer #diagram-info, .diagram-footer #diagram-difference-info{
+    color:rgb(102, 102, 102);
+}
+
+.diagram-footer #diagram-value, .diagram-footer #diagram-value-difference{
+    font-weight: bold;
+    color:black;
+}
+
+footer{
+position: absolute;
+bottom:0;
+margin:auto;
+width:100%;
+}
+
+
+
+
+/*RESPONSIVE STYLING*/
+
+@media screen and (max-width:500px){
+    .wrapper{
+        max-width:95%;
+        height: 100%;
+    }
+
+    .diagram-heading{
+        font-size: 0.7rem;
+      
+    }
+}
