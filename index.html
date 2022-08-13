@@ -75,7 +75,7 @@ async function fetchData(){
 
   //wait until response 
   const datapoints = await response.json();
-  //console.log(datapoints);
+ 
   
   
   return datapoints;
@@ -84,7 +84,6 @@ async function fetchData(){
 fetchData().then(datapoints =>{
 
     datapoints.forEach((element)=>{
-      console.log(element);
       labels.push(element.day)
       dataAmount.push(element.amount)
     })
@@ -94,7 +93,7 @@ fetchData().then(datapoints =>{
 
 
 function buildChart(){
-  console.log(dataAmount);
+  
   const data={
     labels: labels,
     datasets:[{
